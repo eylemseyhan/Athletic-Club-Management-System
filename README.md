@@ -1,4 +1,4 @@
-# ** DSİ Athletic Club Management System **
+#  DSİ Athletic Club Management System 
 ## Overview
 The DSİ Athletic Club Management System is a web application designed to manage student registrations for various sports activities. The system streamlines the registration process, tracks student participation, and provides an organized interface for administrators to manage sports programs efficiently.
 
