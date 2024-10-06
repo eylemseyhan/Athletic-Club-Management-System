@@ -1,0 +1,75 @@
+﻿@model DsiSporKayitSistemi.Models.Antrenorler
+
+
+@{
+    ViewBag.Title = "Antrenör Kayıt";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Antrenör Kayıt</h2>
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        @using (Html.BeginForm("AntrenorEkle", "KontrolPaneli", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+
+                            <!-- ad ve soyad satırı -->
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleFirstName"
+                placeholder="Ad">*@
+                                    @Html.TextBoxFor(m => m.AntrenorAdi, null, new { @maxlength = "25", @class = "form-control form-control-user", @placeholder = "Ad" })
+                                </div>
+                                <div class="col-sm-6">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleLastName"
+                placeholder="Soyad">*@
+                                    @Html.TextBoxFor(m => m.AntrenorSoyadi, null, new { @maxlength = "30", @class = "form-control form-control-user", @placeholder = "Soyad" })
+                                </div>
+                            </div>
+                            <!-- tcno ve telefon satırı -->
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleTcNo"
+                placeholder="TC Kimlik No">*@
+                                    @Html.TextBoxFor(m => m.AntrenorTC, null, new { @maxlength = "11", @class = "form-control form-control-user", @placeholder = "TC Kimlik No" })
+                                </div>
+                                <div class="col-sm-6">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleTelNo"
+                placeholder="Telefon Numarası">*@
+                                    @Html.TextBoxFor(m => m.AntrenorTel, null, new { @maxlength = "15", @class = "form-control form-control-user", @placeholder = "Telefon Numarası" })
+                                </div>
+                            </div>
+                            <!-- spor dalı seçimi -->
+                           <div class="form-group">
+                                <label>Spor Dalı Seçin</label>
+                                @Html.DropDownListFor(m => m.BransID ,(List<SelectListItem>)ViewBag.Brans , new { @class="form-control form-control-user" })
+                            </div>
+                            @*<div class="form-group">*@  @*<label for="BransID" class="form-label">Spor Dalı Seçin</label>
+        <select class="form-control form-control-user" id="exampleSporDali" placeholder="Spor Dalı Seçiniz">
+            <option value="1">Futbol</option>
+            <option value="2">Basketbol</option>
+            <option value="3">Voleybol</option>
+            <option value="4">Yüzme</option>
+            <option value="5">Tenis</option>
+
+        </select>*@
+                            @*</div>*@
+                            <hr>
+                            <!-- Buton -->
+                            <div class="form-group text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Antrenör Kayıt Et</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

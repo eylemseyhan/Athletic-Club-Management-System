@@ -1,0 +1,95 @@
+﻿@model DsiSporKayitSistemi.Models.KurKayit
+@{
+    ViewBag.Title = "KursUpdateForm";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 div class="text-center">Kurs Güncelle</h2>
+<div class="container-fluid">
+    <div class="container-md">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            @using (Html.BeginForm("KursDuzenle", "KontrolPaneli", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="card-body p-0">
+                    @Html.TextBoxFor(m => m.KurID,null, new { @class = "form-control", type = "hidden" })
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <form>
+                                    <!-- Kurs Adı -->
+                                    <div class="mb-3">
+                                        <label for="kursAdi" class="form-label">Kurs Adı</label>
+                                        @Html.TextBoxFor(m => m.KurAdi, null, new { @maxlength = "25", @class = "form-control form-control-user", @placeholder = "Kurs Adı" })
+                                    </div>
+
+                                    <!--Spor Dalı Seçimi-->
+                                    <div class="mb-3">
+                                        <label for="bransAdi" class="form-label">Spor Dalı</label>
+                                        @Html.TextBoxFor(m => m.SporDaliID, new { @class = "form-control", type = "hidden" })
+                                        @Html.DropDownListFor(m => m.SporDaliID, (List<SelectListItem>)ViewBag.SporDallari, new { @maxlength = "25", @class = "form-control form-control-user", @placeholder = "Kurs Adı", @disabled = "disabled" })
+                                    </div>
+                                    <!-- Dönem Seçimi -->
+                                    <div class="mb-3">
+                                        <label for="donemSec" class="form-label">Dönem Seç</label>
+                                        @Html.TextBoxFor(m => m.DonemID, new { @class = "form-control", type = "hidden" })
+                                        @Html.DropDownListFor(m => m.DonemID, (List<SelectListItem>)ViewBag.DonemSecim, new { @class = "form-control form-control-user", @disabled = "disabled" })
+                                    </div>
+
+                                    <!--step 2 başlangıcı-->
+                                    @*@Html.TextBoxFor(m => m.KurAdi, new { @class = "form-control", type = "hidden" })
+        @Html.TextBoxFor(m => m.DonemID, new { @class = "form-control", type = "hidden" })*@
+                                    @*@Html.TextBoxFor(m => m.SporDaliID, new { @class = "form-control", type = "hidden" })*@
+                                    <!-- Antrenörler ( branşa göre gelecek. ) -->
+                                    <div class="mb-3">
+                                        <label for="antrenorSec" class="form-label">Antrenörler</label>
+                                        @Html.DropDownListFor(m => m.AntrenorID, (List<SelectListItem>)ViewBag.Antrenor, new { @class = "form-control form-control-user" })
+                                    </div>
+
+                                    <!-- Başlangıç Tarihi -->
+                                    <div class="mb-3">
+                                        <label for="baslangicTarihi" class="form-label">Başlangıç Tarihi</label>
+                                        @Html.TextBoxFor(m => m.BaslangicTarihi, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                    </div>
+
+                                    <!-- Bitiş Tarihi -->
+                                    <div class="mb-3">
+                                        <label for="bitisTarihi" class="form-label">Bitiş Tarihi</label>
+                                        @Html.TextBoxFor(m => m.BitisTatihi, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                    </div>
+
+                                    <!-- Saat Aralığı -->
+                                    <div class="mb-3">
+                                        <label for="saatAraligi" class="form-label">Saat Aralığı</label>
+                                        <div class="input-group">
+                                            @Html.EditorFor(m => m.SaatBaslangic, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+                                            @Html.EditorFor(m => m.SaatBitis, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+                                        </div>
+                                    </div>
+
+                                    <!-- Kontenjan -->
+                                    <div class="mb-3">
+                                        <label for="kontenjan" class="form-label">Kontenjan</label>
+                                        @Html.EditorFor(m => m.Kontenjan, new { htmlAttributes = new { @class = "form-control form-control-user" } })
+
+                                    </div>
+
+                                    <!-- Ekle Butonu -->
+                                    <div class="form-group text-center mt-4">
+                                        <button type="submit" class="btn btn-primary">Düzenlemeyi Tamamla</button>
+                                    </div>
+
+                                   
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+

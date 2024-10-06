@@ -1,0 +1,37 @@
+﻿@model DsiSporKayitSistemi.Models.SporDali
+
+@{
+    ViewBag.Title = "Spor Dalı Kayıt";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Spor Dalı Kaydı</h2>
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        @using (Html.BeginForm("SporDaliEkle", "KontrolPaneli", FormMethod.Post))
+        {
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <form class="user">
+                                <!-- Spor dalı adı -->
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleSporDaliAd"
+                                           placeholder="Spor Dalı Adı" required>*@
+                                    @Html.TextBoxFor(m => m.SporAdi,null,new { @maxlength = "50" , @class = "form-control form-control-user" , @placeholder = "Spor Dalı Adı" })
+                                </div>
+                                <hr>
+                                <!-- Buton -->
+                                <div class="form-group text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Spor Dalı Kaydet</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

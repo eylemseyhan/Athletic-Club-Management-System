@@ -1,0 +1,63 @@
+﻿@model  IEnumerable<DsiSporKayitSistemi.Models.View_Sporcu_info>
+@{
+    ViewBag.Title = "Sporcu Listesi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Sporcu Listesi</h2>
+
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>Tel No</th>
+                                    <th>Kayıt Olduğu Spor Dalı</th>
+                                    <th>Kan Grubu</th>
+                                    <th>Doğum Tarihi</th>
+                                    <th>İşlemler</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var ogrenci in Model)
+            {
+                                   <tr>
+                                       <td>@ogrenci.Ad</td>
+                                       <td>@ogrenci.Soyad</td>
+                                       <td>@ogrenci.TelNo</td>
+                                       <td>@ogrenci.SporAdi</td>
+                                       <td>@ogrenci.KanGrubu</td>
+                                       <td>@ogrenci.DogumTarihi.Value.ToString(("dd/MM/yyyy"))</td>
+                                       <td>
+                                           @Html.ActionLink("Bilgileri Gör","Bilgi", "OgrenciDetay", new { id = ogrenci.OgrenciID }, new { @class = "btn btn-success btn-sm" })
+                                           @Html.ActionLink("Düzenle","OgrenciUpdateForm", new { id = ogrenci.OgrenciID }, new { @class = "btn btn-warning btn-sm" })
+                                           @Html.ActionLink("Sil","OgrenciSil", "KontrolPaneli", new { id = ogrenci.OgrenciID }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bu öğrenciyi silmek istediğinizden emin misiniz?');" })
+                                       </td>
+                                   </tr>
+            }
+                              
+
+                                    @*<td>Eylem</td>
+                                    <td>Seyhan</td>
+                                    <td>5434905122</td>
+                                    <td>A Rh+</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm">Düzenle</button>
+                                        <button class="btn btn-danger btn-sm">Sil</button>
+                                    </td>*@
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

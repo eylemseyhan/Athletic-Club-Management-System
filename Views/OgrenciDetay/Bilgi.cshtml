@@ -1,0 +1,159 @@
+﻿@model DsiSporKayitSistemi.Models.Ogrenciler
+
+@{
+    ViewBag.Title = "Bilgi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    .text-uppercase {
+        text-transform: uppercase; 
+    }
+    .student-info-card {
+        
+        border: 1px solid #e9ecef;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+</style>
+
+<a class="nav-link nav-item d-inline-block mb-4 ml-4" href="@Url.Action("SporcuListesi","Home")">
+    <i class="fas fa-arrow-left"></i><span class="ml-2 font-weight-bold">Geri Dön</span>
+
+</a>
+
+
+<div class="container-xl px-4 mt-4">
+    <!-- Ad Soyad Bilgisi -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-6 text-center">
+            <div class="card bg-gradient-primary text-white p-3 shadow-lg">
+                <h2 class="card-title text-uppercase mb-0 font-weight-bold">
+                    @Model.Ad @Model.Soyad
+                </h2>
+            </div>
+        </div>
+    </div>
+    <!-- Kan Grubu ve TC No Bilgisi -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-8 text-center">
+            <div class="row">
+                <div class="col-12 col-md-6 mb-2">
+                    
+                        <div class="card-body p-2">
+                            <p class="font-weight-bold mb-1">Kan Grubu</p>
+                            <p class="text-muted mb-0">@Model.KanGrubu</p>
+                        </div>
+                    
+                </div>
+                <div class="col-12 col-md-6 mb-2">
+                    
+                        <div class="card-body p-2">
+                            <p class="font-weight-bold mb-1">TC No</p>
+                            <p class="text-muted mb-0" >@Model.TCNo</p>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Sol Div -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card bg-white p-4 shadow-lg">
+                <div class="card-header">İletişim Bilgileri</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Telefon Numarası</th>
+                                    <th>E-mail</th>
+                                    <th>Adres</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.TelNo</td>
+                                    <td>@Model.Mail</td>
+                                    <td>@Model.Adres</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Orta Div -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card bg-white p-4 shadow-lg">
+                <div class="card-header">Fiziksel Bilgiler</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Boy</th>
+                                    <th>Kilo</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.Boy</td>
+                                    <td>@Model.Kilo</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- İkinci Satır -->
+    <div class="row g-4">
+        <!-- Sağ Div -->
+        <div class="col-12">
+            <div class="card bg-white p-4 shadow-lg">
+                <div class="card-header">Diğer Bilgiler</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Doğum Tarihi</th>
+                                    <th>Doğum Yeri</th>
+                                    <th>Sağlık Sorunu</th>
+                                    <th>Kullanılan İlaçlar</th>
+                                    <th>Alerjiler</th>
+                                    <th>Spor Geçmişi</th>
+                                    <th>Yakını Ad</th>
+                                    <th>Yakını Soyad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@(Model.DogumTarihi.HasValue ? Model.DogumTarihi.Value.ToString("dd.MM.yyyy") : "Bilgi Yok")</td>
+                                    <td>@Model.DogumYeri</td>
+                                    <td>@Model.SaglikSorunu</td>
+                                    <td>@Model.KullanilanIlaclar</td>
+                                    <td>@Model.Alerjiler</td>
+                                    <td>@Model.SporGecmisi</td>
+                                    <td>@Model.YakiniAd</td>
+                                    <td>@Model.YakiniSoyad</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

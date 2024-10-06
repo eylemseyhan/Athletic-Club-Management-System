@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DsiSporKayitSistemi.Models.View_Sporcu_info>
+@{
+    ViewBag.Title = "EkKursAdd";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Ek Kurs Ekle</h2>
+
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <h4>Lütfen öğrenci seçiniz</h4>
+
+                        <!-- Kurs Tablosu -->
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>Tel No</th>
+                                    <th>Kan Grubu</th>
+                                    <th>Doğum Tarihi</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var ogrenci in Model)
+                                {
+                                    <tr>
+                                        <td>@ogrenci.Ad</td>
+                                        <td>@ogrenci.Soyad</td>
+                                        <td>@ogrenci.TelNo</td>
+                                        <td>@ogrenci.KanGrubu</td>
+                                        <td>@ogrenci.DogumTarihi.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            @using (Html.BeginForm("OgrenciEkKursSec", "Home", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="OgrenciID" value="@ogrenci.OgrenciID" />
+                                                <button type="submit" class="btn btn-warning btn-sm">Öğrenci Seç</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

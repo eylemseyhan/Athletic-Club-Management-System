@@ -1,0 +1,137 @@
+﻿@model  DsiSporKayitSistemi.Models.ViewModel.OgrenciVeKayitVM
+@{
+    ViewBag.Title = "OgrenciUpdateForm";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Öğrenci Güncelle</h2>
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        @using (Html.BeginForm("OgrenciDuzenle", "KontrolPaneli", FormMethod.Post))
+        {
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <form class="user">
+                                @Html.TextBoxFor(m => m.ogrenciler.OgrenciID, null, new { @class = "form-control", type = "hidden" })
+                                
+                                <!-- ad ve soyad satırı -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        @*<input type="text" class="form-control form-control-user " id="exampleFirstName"placeholder="Ad">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.Ad, null, new { @maxlength = "25", @class = "form-control form-control-user", @placeholder = "Ad" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @*<input type="text" class="form-control form-control-user" id="exampleLastName"placeholder="Soyad">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.Soyad, null, new { @maxlength = "25", @class = "form-control form-control-user", @placeholder = "Soyad" })
+                                    </div>
+                                </div>
+                                <!-- email ve tcno satırı -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        @*<input type="email" class="form-control form-control-user" id="exampleInputEmail"placeholder="Email Adresi">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.Mail, null, new { @maxlength = "90", @class = "form-control form-control-user", @placeholder = "Mail" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @*<input type="text" class="form-control form-control-user" id="exampleTcNo"
+                placeholder="TC Kimlik No">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.TCNo, null, new { @maxlength = "11", @class = "form-control form-control-user", @placeholder = "TC Kimlik No" })
+
+                                    </div>
+                                </div>
+                                <!-- boy ve kilo satırı -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        @*<input type="text" class="form-control form-control-user" id="exampleBoy"
+                placeholder="Boy (cm)">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.Boy, null, new { @maxlength = "3", @class = "form-control form-control-user", @placeholder = "Boy" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @*<input type="text" class="form-control form-control-user" id="exampleKilo"
+                placeholder="Kilo (kg)">*@
+                                        @Html.TextBoxFor(m => m.ogrenciler.Kilo, null, new { @maxlength = "3", @class = "form-control form-control-user", @placeholder = "Kilo" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleDoğumTarihi" class="form-label">Doğum Tarihi</label>
+                                    @*<input type="date" class="form-control form-control-user" id="exampleDoğumTarihi" placeholder="Doğum Tarihi">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.DogumTarihi, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control form-control-user", @placeholder = "Doğum Tarihi" })
+                                </div>
+
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleDoğumYeri"
+            placeholder="Doğum Yeri">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.DogumYeri, null, new { @maxlength = "40", @class = "form-control form-control-user", @placeholder = "Doğum Yeri" })
+                                </div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleKanGrubu"
+            placeholder="Kan Grubu">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.KanGrubu, null, new { @maxlength = "20", @class = "form-control form-control-user", @placeholder = "Kan Grubu" })
+                                </div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleTelNo"
+            placeholder="Telefon Numarası">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.TelNo, null, new { @maxlength = "15", @class = "form-control form-control-user", @placeholder = "Telefon Numarası" })
+                                </div>
+
+                                <!--<div class="form-group">
+    <label for="exampleSporDali" class="form-label">Spor Dalı Seçin</label>
+    <select class="form-control form-control-user" id="exampleSporDali" placeholder="Spor Dalı Seçiniz">
+        <option value="1">Futbol</option>
+        <option value="2">Basketbol</option>
+        <option value="3">Voleybol</option>
+        <option value="4">Yüzme</option>
+        <option value="5">Tenis</option>-->
+                                <!-- vtye göre düzenlenecek -->
+                                <!--</select>
+    </div>-->
+                                @Html.TextBoxFor(m => m.kayit.KayitID, null, new { @class = "form-control", type = "hidden" })
+                                @Html.TextBoxFor(m => m.kayit.KursID, null, new { @class = "form-control", type = "hidden" })
+                                <div class="form-group">
+                                    @Html.DropDownListFor(m => m.kayit.SporID, (List<SelectListItem>)ViewBag.Brans, "Spor dalı seçiniz", new { @class = "form-control form-control-user", @id = "ogrenci_brans" })
+                                </div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleYakinAdi"
+            placeholder="Yakınının Adı">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.YakiniAd, null, new { @maxlength = "15", @class = "form-control form-control-user", @placeholder = "Yakını Adı" })
+                                </div>
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control form-control-user" id="exampleYakinSoyadi"
+            placeholder="Yakınının Soyadı">*@
+                                    @Html.TextBoxFor(m => m.ogrenciler.YakiniSoyad, null, new { @maxlength = "30", @class = "form-control form-control-user", @placeholder = "Yakını Soyadı" })
+                                </div>
+                                <div class="form-group">
+                                    @*<textarea class="form-control" id="exampleSaglikSorunu" rows="3" placeholder="Sağlık sorunu varsa ekleyiniz"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ogrenciler.SaglikSorunu, new { @class = "form-control", @rows = "10", @placeholder = "Sağlık sorunu varsa ekleyiniz" })
+                                </div>
+                                <div class="form-group">
+                                    @*<textarea class="form-control" id="exampleSporGecmisi" rows="3" placeholder="Spor geçmişi"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ogrenciler.SporGecmisi, new { @class = "form-control", @rows = "10", @placeholder = "Spor geçmişi" })
+                                </div>
+                                <div class="form-group">
+                                    @*<textarea class="form-control" id="exampleKullanilanIlaclar" rows="3" placeholder="Kullanılan ilaçlar"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ogrenciler.KullanilanIlaclar, new { @class = "form-control", @rows = "10", @placeholder = "Kullanılan ilaçlar" })
+                                </div>
+                                <div class="form-group">
+                                    @*<textarea class="form-control" id="exampleAlerjiler" rows="3" placeholder="Alerjiler"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ogrenciler.Alerjiler, new { @class = "form-control", @rows = "10", @placeholder = "Alerjiler" })
+                                </div>
+                                <div class="form-group">
+                                    @*<textarea class="form-control" id="exampleAdres" rows="3" placeholder="Adres"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ogrenciler.Adres, new { @class = "form-control", @rows = "10", @placeholder = "Adres" })
+                                </div>
+                                <hr>
+                                <!-- Buton  -->
+                                <div class="form-group text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Sporcu Güncelle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

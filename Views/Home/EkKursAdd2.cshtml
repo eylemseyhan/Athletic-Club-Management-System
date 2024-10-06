@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Ek Kurs Ekle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+@model DsiSporKayitSistemi.Models.KurKayit
+}
+
+
+<h2 class="text-center">Ek Kurs Ekle</h2>
+
+@using (Html.BeginForm("EkKursKayitSon", "Home", FormMethod.Post))
+{
+
+    <input name="ogrenciID" value="@ViewBag.OgrenciID" />
+
+    <div class="container-md">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <h4>Spor Dalı Seçin</h4>
+                            <div class="form-group">
+                                <label for="sporDali">Spor Dalı Seçin:</label>
+                                @Html.DropDownList("spor", new SelectList(ViewBag.SporDallari, "SporID", "SporAdi"), "Spor Dalı Seçin", new { @class = "form-control", id = "sporDali" })
+                            </div>
+                            <div class="form-group">
+                                <label for="kursDali">Kurs Seçin:</label>
+                                <select id="kursDali" name="kursDali" class="form-control">
+                                    <option value="">Kurs Seçin</option>
+                                    <!-- Kurslar buraya AJAX ile eklenecek -->
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ek Kurs Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- jQuery  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- AJAX ile Kurslar Getirme -->
+<script>
+
+$(document).ready(function() {
+    $('#sporDali').change(function() {
+        var sporDaliID = $(this).val();
+        if (sporDaliID) {
+            $.ajax({
+                url: '@Url.Action("GetKurslar", "Home")',
+                type: 'POST',
+                data: { sporDaliID: sporDaliID },
+                success: function(data) {
+                    var kursDaliSelect = $('#kursDali');
+                    kursDaliSelect.empty();
+                    kursDaliSelect.append('<option value="">Kurs Seçin</option>');
+
+                    // Veriyi kontrol edin
+                    console.log(data);
+
+                    try {
+                        var kurslar = JSON.parse(data);
+                        $.each(kurslar, function(index, kurs) {
+                            kursDaliSelect.append('<option value="' + kurs.KursID + '">' + kurs.KursAdi + '</option>');
+                        });
+                    } catch (e) {
+                        console.error("JSON parsing error: ", e);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX error: ", status, error);
+                }
+            });
+        } else {
+            $('#kursDali').empty().append('<option value="">Kurs Seçin</option>');
+        }
+    });
+});
+</script>
+
+
+
+

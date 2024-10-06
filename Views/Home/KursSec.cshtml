@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DsiSporKayitSistemi.Models.KurKayit>
+
+@{
+    ViewBag.Title = "Kurs Seç";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    string formatDateTime(DateTime? dateTime)
+    {
+        return dateTime.HasValue ? dateTime.Value.ToString("dd-MM-yyyy") : "Girilmemiş";
+    }
+    string formatTimeSpan(TimeSpan? timeSpan)
+    {
+        return timeSpan.HasValue ? $"{timeSpan.Value.Hours:D2}:{timeSpan.Value.Minutes:D2}" : "Girilmemiş";
+    }
+}
+
+<h2 class="text-center">Kurs Seç</h2>
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <h3 class="text-center">Lütfen öğrencinin kayıt olacağı kursu seçin</h3>
+                        <!-- Kurs Listesi Tablosu -->
+                        @using (Html.BeginForm("OgrenciKurKayitAdd", "Home", FormMethod.Post))
+                        {
+                            //gizli olarak alıyor
+                            <input type="hidden" name="KayitID" value="@ViewBag.KayitID" />
+                            <input type="hidden" name="SporID" value="@ViewBag.SporID" />
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Kurs Adı</th>
+                                        <th>Dönem</th>
+                                        <th>Başlangıç Tarihi</th>
+                                        <th>Bitiş Tarihi</th>
+                                        <th>Kontenjan</th>
+                                        <th>Antrenör</th>
+                                        <th>Başlangıç Saati</th>
+                                        <th>Bitiş Saati</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kurs in Model)
+                                    {
+                                        <tr>
+                                            <td>@kurs.KurAdi</td>
+                                            <td>@kurs.Donem.DonemAdi</td>
+                                            <td>@formatDateTime(kurs.BaslangicTarihi)</td>
+                                            <td>@formatDateTime(kurs.BitisTatihi)</td>
+                                            <td>@kurs.Kontenjan</td>
+                                            <td>@(kurs.Antrenorler != null ? $"{kurs.Antrenorler.AntrenorAdi} {kurs.Antrenorler.AntrenorSoyadi}" : "Girilmemiş")</td>
+                                            <td>@formatTimeSpan(kurs.SaatBaslangic)</td>
+                                            <td>@formatTimeSpan(kurs.SaatBitis)</td>
+                                            <td>
+                                                
+                                                <input type="hidden" name="KurID" value="@kurs.KurID" />
+                                                <button type="submit" class="btn btn-warning btn-sm">Seç</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

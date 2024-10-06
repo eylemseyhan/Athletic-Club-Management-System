@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DsiSporKayitSistemi.Models.Antrenorler>
+@{
+    ViewBag.Title = "Antrenör Listesi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 class="text-center">Antrenör Listesi</h2>
+<div class="container-md">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="p-5">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>TC No</th>
+                                    <th>Telefon Numarası</th>
+                                    <th>Branş</th>
+                                    <th>İşlemler</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var antrenor in Model)
+                                {
+                                    <tr>
+                                        <td>@antrenor.AntrenorAdi</td>
+                                        <td>@antrenor.AntrenorSoyadi</td>
+                                        <td>@antrenor.AntrenorTC</td>
+                                        <td>@antrenor.AntrenorTel</td>
+                                        <td>@antrenor.SporDali.SporAdi</td>
+                                        <td>
+                                           
+                                            @Html.ActionLink("Düzenle", "AntrenorUpdateForm", new { id = antrenor.AntrenorID }, new { @class = "btn btn-warning btn-sm" })
+                                            @Html.ActionLink("Sil","AntrenorSil", "KontrolPaneli", new { id = antrenor.AntrenorID }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bu spor dalını silmek istediğinizden emin misiniz?');" })
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
