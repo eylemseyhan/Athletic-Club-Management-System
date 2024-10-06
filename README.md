@@ -3,17 +3,17 @@
 The DSİ Athletic Club Management System is a web application designed to manage student registrations for various sports activities. The system streamlines the registration process, tracks student participation, and provides an organized interface for administrators to manage sports programs efficiently.
 
 ## Features
-Student Management: Users can add, edit, and remove student records.
-Sport Management: Users can manage different sports categories and courses.
-Course Registration: Students can register for available sports courses.
-Course Tracking: Admins can monitor student participation and attendance.
-Dashboard: A user-friendly dashboard that provides an overview of key metrics such as total students, active athletes, and course participation rates.
+- Student Management: Users can add, edit, and remove student records.
+- Sport Management: Users can manage different sports categories and courses.
+- Course Registration: Students can register for available sports courses.
+- Course Tracking: Admins can monitor student participation and attendance.
+- Dashboard: A user-friendly dashboard that provides an overview of key metrics such as total students, active athletes, and course participation rates.
 
 ## Technologies Used
-Frontend: HTML, CSS, JavaScript, Bootstrap
-Backend: ASP.NET MVC
-Database: Microsoft SQL Server
-Libraries/Frameworks: jQuery, Entity Framework
+- Frontend: HTML, CSS, JavaScript, Bootstrap
+- Backend: ASP.NET MVC
+- Database: Microsoft SQL Server
+- Libraries/Frameworks: jQuery, Entity Framework
 
 ## Screenshots
  ![1723453759492](https://github.com/user-attachments/assets/83c71637-2bd5-4a71-8d1e-3e1cfa751388)
